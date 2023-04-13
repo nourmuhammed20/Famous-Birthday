@@ -1,0 +1,45 @@
+label {
+  display: table-cell;
+}
+
+input {
+  display: table-cell;
+  margin-bottom: 15px;
+}
+
+.error {
+  color: #FF0000;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  background-color: yellow;
+  border-radius: 50%;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 170px;
+  background-color: rgb(65, 61, 61);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  color: white;
+}
