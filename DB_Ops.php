@@ -12,7 +12,7 @@
 
     if(isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
       $image = $_FILES['image']['name'];  // get filename of uploaded file
-      $destination = './images/upload' . $image; // set the destination path
+      $destination = './images/upload/' . $image; // set the destination path
       if(move_uploaded_file($_FILES['image']['tmp_name'], $destination)) { // move file to desired location
       } else {
         echo "Error uploading file.";

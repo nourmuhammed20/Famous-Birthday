@@ -10,6 +10,7 @@ const phone = document.getElementById("phone");
 const address = document.getElementById("address_id");
 const birthDate = document.getElementById("bd_id");
 const image = document.getElementById("img_id");
+const errorLabel=document.querySelector('#uname_response');
 
 function submit() {
   fullname.addEventListener("keyup", function () {
@@ -261,6 +262,7 @@ $(document).ready(function(){
                   $('#uname_response').html(response);
                   username1.classList.add("is-invalid");
                   username1.classList.remove("is-valid");
+                  
               }
           });
       }else{
@@ -283,7 +285,8 @@ $(document).ready(function(){
           }
       }
   });
-});
+}
+);
 
 
 
