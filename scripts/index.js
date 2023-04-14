@@ -1,7 +1,7 @@
 const form = document.getElementById("form");
 const fullname = document.getElementById("fname_id");
 
-const username = document.getElementById("uname_id");
+const username1 = document.getElementById("uname_id");
 const email = document.querySelector("#email_id");
 const password = document.getElementById("password_id");
 const password2 = document.getElementById("password2_id");
@@ -36,6 +36,10 @@ function submit() {
   });
   birthDate.addEventListener("blur", birthDateValidation);
   birthDate.addEventListener("change", birthDateValidation);
+
+  // username.addEventListener("change", function () {
+  //   checkUser();
+  // });
 }
 submit();
 
@@ -241,4 +245,45 @@ function validateImage() {
     image.classList.remove("is-invalid");
   }
 }
+
+//still has error 
+$(document).ready(function(){
+  const username1 = document.getElementById("uname_id");
+
+  $("#uname_id").keyup(function(){
+      var username = $(this).val().trim();
+      if(username != ''){
+          $.ajax({
+              url: 'Server-side.php',
+              type: 'post',
+              data: {username: username},
+              success: function(response){
+                  $('#uname_response').html(response);
+                  username1.classList.add("is-invalid");
+                  username1.classList.remove("is-valid");
+              }
+          });
+      }else{
+          $("#uname_response").html("");
+          username1.classList.remove("is-invalid");
+          username1.classList.add("is-valid");
+      }
+  });
+
+  // add blur event listener to validate after the input field loses focus
+  $("#uname_id").blur(function(){
+      if($(this).val().trim() == ''){
+          $("#uname_response").html("");
+          username1.classList.remove("is-invalid");
+          username1.classList.remove("is-valid");
+      }else{
+          if(username1.classList.contains("is-invalid")){
+              username1.classList.remove("is-invalid");
+              username1.classList.add("is-valid");
+          }
+      }
+  });
+});
+
+
 
