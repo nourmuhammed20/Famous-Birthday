@@ -6,6 +6,8 @@ body {
     background: #fbfbfd;
 }
 
+.new_footer_area{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;}
 
 .new_footer_top {
     padding: 120px 0px 270px;

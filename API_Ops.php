@@ -1,21 +1,13 @@
-<body>
-<form method='get'>
-<input type='number' name='month' min="1" max="12">
-<input type='number' name='day' min="1" max="31">
-<input type='submit' >
-</form>
-
-</body>
-
-
 <?php
 
-if (isset($_GET['month']) && isset($_GET['day'])) {
-    $month = $_GET['month'];
-    $day = $_GET['day'];
+if (isset($_GET['birthday'])) {
+    $date = $_GET['birthday'];
+    $date_components = explode('-', $date);
+    $month = $date_components[1];
+    $day = $date_components[2];
 } else {
-    $month = 3;
-    $day = 3;
+    $month = 1;
+    $day = 1;
 }
 
 $curl = curl_init();
