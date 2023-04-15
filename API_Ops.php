@@ -1,5 +1,6 @@
 <?php
 
+
 if (isset($_GET['birthday'])) {
     $date = $_GET['birthday'];
     $date_components = explode('-', $date);
@@ -23,7 +24,7 @@ curl_setopt_array($curl, [
     CURLOPT_CUSTOMREQUEST => "GET",
     CURLOPT_HTTPHEADER => [
         "X-RapidAPI-Host: online-movie-database.p.rapidapi.com",
-		"X-RapidAPI-Key: 76f5f519e9msha8c8ade6c715a75p159cbejsn569bda771836"
+		"X-RapidAPI-Key:  5ae267644cmsh662f5485d8b340ep11e8dbjsn07196ef43dbc"
     ],
 ]);
 
@@ -50,7 +51,7 @@ if ($err) {
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => [
                 "X-RapidAPI-Host: online-movie-database.p.rapidapi.com",
-				"X-RapidAPI-Key: 76f5f519e9msha8c8ade6c715a75p159cbejsn569bda771836"
+				"X-RapidAPI-Key: 5ae267644cmsh662f5485d8b340ep11e8dbjsn07196ef43dbc"
             ],
         ]);
         $bio_response = curl_exec($curl);
@@ -62,18 +63,22 @@ if ($err) {
             $bio = json_decode($bio_response);
             if (isset($bio->name)) {
                 $names[] = $bio->name;
+                // echo $bio->name;
             }
         }
     }
+
+    echo json_encode($names);
+
     // echo json_encode($names);
 
 
-	echo '<div class="container"><div class="row mt-3">';
-    foreach ($names as $name) {
-		echo '<div class="col-md-4">';
-		echo '<div class="bg-primary text-white px-3 py-2 m-2">'.$name.'</div>';
-	    echo '</div>';
-    }
-	echo '</div></div>';
+	// echo '<div class="container"><div class="row mt-3">';
+    // foreach ($names as $name) {
+	// 	echo '<div class="col-md-4">';
+	// 	echo '<div class="bg-primary text-white px-3 py-2 m-2">'.$name.'</div>';
+	//     echo '</div>';
+    // }
+	// echo '</div></div>';
 	
 }

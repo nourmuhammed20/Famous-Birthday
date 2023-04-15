@@ -25,3 +25,6 @@
 ::-webkit-scrollbar-thumb:hover {
   background: var(--secondColor);
 }
+.bg-primary {
+  background-color: var(--secondColor) !important;
+}

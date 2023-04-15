@@ -1,16 +1,24 @@
-const form = document.getElementById("form");
+const form = document.getElementById("#form");
 const fullname = document.getElementById("fname_id");
 
 const username1 = document.getElementById("uname_id");
 const email = document.querySelector("#email_id");
 const password = document.getElementById("password_id");
 const password2 = document.getElementById("password2_id");
-
+const submitBtn = document.querySelector("#submitBtn");
 const phone = document.getElementById("phone");
 const address = document.getElementById("address_id");
 const birthDate = document.getElementById("bd_id");
 const image = document.getElementById("img_id");
-const errorLabel=document.querySelector('#uname_response');
+const errorLabel = document.querySelector("#uname_response");
+
+// Tooltip
+var tooltipTriggerList = [].slice.call(
+  document.querySelectorAll('[data-bs-toggle="tooltip"]')
+);
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl);
+});
 
 function submit() {
   fullname.addEventListener("keyup", function () {
@@ -35,119 +43,40 @@ function submit() {
   image.addEventListener("change", function () {
     validateImage();
   });
-  birthDate.addEventListener("blur", birthDateValidation);
-  birthDate.addEventListener("change", birthDateValidation);
+  birthDate.addEventListener("blur", function(){
+    birthDateValidation();
 
-  // username.addEventListener("change", function () {
-  //   checkUser();
-  // });
+  });
+  birthDate.addEventListener("change", function(){
+    birthDateValidation();
+
+  });
+
 }
+
 submit();
 
-// const setError = (element, message) => {
-//     const inputControl = element.parentElement;
-//     const errorDisplay = inputControl.querySelector('.error');
-
-//     errorDisplay.innerText = message;
-//     inputControl.classList.add('error');
-//     inputControl.classList.remove('success');
-// }
-
-// const setSuccess = element => {
-//     const inputControl = element.parentElement;
-//     const errorDisplay = inputControl.querySelector('.error');
-
-//     errorDisplay.innerText = '';
-//     inputControl.classList.add('success');
-//     inputControl.classList.remove('error');
-// };
-
-// const isValidEmail = email => {
-//     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-//     return re.test(String(email).toLowerCase());
-// }
-
-// const validateInputs = () => {
-//     const usernameValue = username.value.trim();
-//     const emailValue = email.value.trim();
-//     const passwordValue = password.value.trim();
-//     const password2Value = password2.value.trim();
-
-//     const  fullnameValue = fullname.value.trim();
-//     const phoneValue =  phone.value.trim();
-//     const addressValue = address.value.trim();
-//     const  birthDateValue = birthDate.value.trim();
-//     const imageValue = image.value.trim();
-
-//     const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-//     const literalChars = /[a-zA-Z]/;
-
-//     if(usernameValue === '') {
-//         setError(username, 'Username is required');
+// Add event listener to each input field to check if it contains "is-invalid" class
+// [
+//   fullname,
+//   username1,
+//   email,
+//   password,
+//   password2,
+//   phone,
+//   address,
+//   birthDate,
+//   image,
+// ].forEach((input) => {
+//   input.addEventListener("input", () => {
+//     if (form.querySelectorAll(".is-invalid").length > 0) {
+//       submitBtn.disabled = true;
 //     } else {
-//         setSuccess(username);
+//       submitBtn.disabled = false;
 //     }
+//   });
+// });
 
-//     if(emailValue === '') {
-//         setError(email, 'Email is required');
-//     } else if (!isValidEmail(emailValue)) {
-//         setError(email, 'Please, Enter a valid email address');
-//     } else {
-//         setSuccess(email);
-//     }
-
-//     if(passwordValue === '') {
-//         setError(password, 'Password is required');
-//     } else if (passwordValue.length < 8 ) {
-//         setError(password, 'Password must be at least 8 character.')
-//     } else if (! literalChars.test(passwordValue)) {
-//         setError(password, 'Password must include at least one literal character.')
-//     } else if (! specialChars.test(passwordValue)) {
-//         setError(password, 'Password must include at least one special character.')
-//     }  else {
-//         setSuccess(password);
-//     }
-
-//     if(password2Value === '') {
-//         setError(password2, 'Please confirm your password');
-//     } else if (password2Value !== passwordValue) {
-//         setError(password2, "Password doesn't match");
-//     } else {
-//         setSuccess(password2);
-//     }
-
-//     if(fullnameValue === '') {
-//         setError(fullname, 'Please, Enter your Full Name');
-//     } else {
-//         setSuccess(fullname);
-//     }
-
-//     if(phoneValue === '') {
-//         setError(phone, 'phone number is required');
-//     } else {
-//         setSuccess(phone);
-//     }
-
-//     if(addressValue === '') {
-//         setError(address, 'addrress is required');
-//     } else {
-//         setSuccess(address);
-//     }
-
-//     if(birthDateValue === '') {
-//         setError(birthDate, 'BirthDate is required');
-//     }
-//      else {
-//         setSuccess(birthDate);
-//     }
-
-//     if(imageValue === '') {
-//         setError(image, 'image is required');
-//     } else {
-//         setSuccess(image);
-//     }
-
-// };
 function nameValidation() {
   var fnameValid = /^[a-zA-Z]+(?:\s[a-zA-Z]+)*$/;
 
@@ -219,14 +148,17 @@ function birthDateValidation() {
   const birthDateValue = birthDate.value;
 
   if (birthDateValue === "") {
-    birthDate.classList.remove("is-valid");
     birthDate.classList.add("is-invalid");
+    birthDate.classList.remove("is-valid");
   } else {
     const selectedDate = new Date(birthDateValue);
-  if (selectedDate.getFullYear() < 1900 || selectedDate.getFullYear() > 2023) {
+    if (
+      selectedDate.getFullYear() < 1900 ||
+      selectedDate.getFullYear() > 2023
+    ) {
       birthDate.classList.remove("is-valid");
       birthDate.classList.add("is-invalid");
-    }else {
+    } else {
       birthDate.classList.remove("is-invalid");
       birthDate.classList.add("is-valid");
     }
@@ -247,46 +179,67 @@ function validateImage() {
   }
 }
 
-//still has error 
-$(document).ready(function(){
+//still has error
+$(document).ready(function () {
   const username1 = document.getElementById("uname_id");
 
-  $("#uname_id").keyup(function(){
-      var username = $(this).val().trim();
-      if(username != ''){
-          $.ajax({
-              url: 'Server-side.php',
-              type: 'post',
-              data: {username: username},
-              success: function(response){
-                  $('#uname_response').html(response);
-                  username1.classList.add("is-invalid");
-                  username1.classList.remove("is-valid");
-                  
-              }
-          });
-      }else{
-          $("#uname_response").html("");
-          username1.classList.remove("is-invalid");
-          username1.classList.add("is-valid");
-      }
-  });
-
-  // add blur event listener to validate after the input field loses focus
-  $("#uname_id").blur(function(){
-      if($(this).val().trim() == ''){
-          $("#uname_response").html("");
-          username1.classList.remove("is-invalid");
-          username1.classList.remove("is-valid");
-      }else{
-          if(username1.classList.contains("is-invalid")){
-              username1.classList.remove("is-invalid");
-              username1.classList.add("is-valid");
+  $("#uname_id").keyup(function () {
+    var username = $(this).val().trim();
+    if (username != "") {
+      $.ajax({
+        url: "Server-side.php",
+        type: "post",
+        data: { username: username },
+        success: function (response) {
+          let elem = `<span style='color: green;'>${response}</span>`;
+          if (response === "Available") {
+            username1.classList.add("is-valid");
+            username1.classList.remove("is-invalid");
+          } else {
+            username1.classList.add("is-invalid");
+            username1.classList.remove("is-valid");
           }
-      }
+        },
+      });
+    } else {
+      $("#uname_response").html("");
+      username1.classList.remove("is-invalid");
+      username1.classList.add("is-valid");
+    }
   });
-}
-);
+})
 
 
 
+
+
+
+// function check()
+// {
+//   let inputs =document.querySelectorAll('input');
+// inputsArray=Array.from(inputs);
+// let ctr = 0;
+// for (const i of inputsArray) {
+  
+//   console.log(i);
+  
+// }
+
+
+// submitBtn.addEventListener("click", function(event) {
+//   // prevent default form submission behavior
+//   event.preventDefault();
+
+//   // check if any input field is invalid
+//   if (document.querySelectorAll(".is-invalid").length > 0) {
+//     submitBtn.disabled = true;
+//     return;
+//   }
+//   //check();
+//   console.log(email);
+
+
+//   // if all input fields are valid, submit the form
+//   form.submit();
+// });
+// }
