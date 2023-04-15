@@ -69,16 +69,5 @@ if ($err) {
     }
 
     echo json_encode($names);
-
-    // echo json_encode($names);
-
-
-	// echo '<div class="container"><div class="row mt-3">';
-    // foreach ($names as $name) {
-	// 	echo '<div class="col-md-4">';
-	// 	echo '<div class="bg-primary text-white px-3 py-2 m-2">'.$name.'</div>';
-	//     echo '</div>';
-    // }
-	// echo '</div></div>';
 	
 }
