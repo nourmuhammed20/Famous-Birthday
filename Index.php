@@ -85,13 +85,18 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6 mt-3 ">
+                        <div class="col-md-5 mt-3 ">
+
                             <div class="form-floating mb-3">
                                 <input type="date" required class="form-control" id="bd_id" name="birthday"
                                     data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom"
                                     title="Valid date between : <br> 1900-2023">
                                 <label for="bd_id">birthday</label>
                             </div>
+                        </div>
+                        <div class="col-md-1 d-flex align-items-center justify-content-end">
+                        <button type="button" class="rounded-2 search-btn p-1" id="search-btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Search Actor's Birthday"><img src="./images/icons8-search.gif" alt="" class="w-75"></button>
+
                         </div>
 
                         <div class="input-group my-3">

@@ -1,6 +1,4 @@
 <?php
-
-
 if (isset($_GET['birthday'])) {
     $date = $_GET['birthday'];
     $date_components = explode('-', $date);
@@ -24,7 +22,7 @@ curl_setopt_array($curl, [
     CURLOPT_CUSTOMREQUEST => "GET",
     CURLOPT_HTTPHEADER => [
         "X-RapidAPI-Host: online-movie-database.p.rapidapi.com",
-		"X-RapidAPI-Key:  5ae267644cmsh662f5485d8b340ep11e8dbjsn07196ef43dbc"
+		"X-RapidAPI-Key: daedd8f255mshc59257e4a657914p19b90ejsnd8afe1f20138"
     ],
 ]);
 
@@ -51,7 +49,7 @@ if ($err) {
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => [
                 "X-RapidAPI-Host: online-movie-database.p.rapidapi.com",
-				"X-RapidAPI-Key: 5ae267644cmsh662f5485d8b340ep11e8dbjsn07196ef43dbc"
+				"X-RapidAPI-Key: daedd8f255mshc59257e4a657914p19b90ejsnd8afe1f20138"
             ],
         ]);
         $bio_response = curl_exec($curl);
@@ -63,11 +61,8 @@ if ($err) {
             $bio = json_decode($bio_response);
             if (isset($bio->name)) {
                 $names[] = $bio->name;
-                // echo $bio->name;
             }
         }
     }
-
     echo json_encode($names);
-	
 }

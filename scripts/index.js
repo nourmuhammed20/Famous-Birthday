@@ -56,26 +56,6 @@ function submit() {
 
 submit();
 
-// Add event listener to each input field to check if it contains "is-invalid" class
-// [
-//   fullname,
-//   username1,
-//   email,
-//   password,
-//   password2,
-//   phone,
-//   address,
-//   birthDate,
-//   image,
-// ].forEach((input) => {
-//   input.addEventListener("input", () => {
-//     if (form.querySelectorAll(".is-invalid").length > 0) {
-//       submitBtn.disabled = true;
-//     } else {
-//       submitBtn.disabled = false;
-//     }
-//   });
-// });
 
 function nameValidation() {
   var fnameValid = /^[a-zA-Z]+(?:\s[a-zA-Z]+)*$/;
@@ -208,38 +188,3 @@ $(document).ready(function () {
     }
   });
 })
-
-
-
-
-
-
-// function check()
-// {
-//   let inputs =document.querySelectorAll('input');
-// inputsArray=Array.from(inputs);
-// let ctr = 0;
-// for (const i of inputsArray) {
-  
-//   console.log(i);
-  
-// }
-
-
-// submitBtn.addEventListener("click", function(event) {
-//   // prevent default form submission behavior
-//   event.preventDefault();
-
-//   // check if any input field is invalid
-//   if (document.querySelectorAll(".is-invalid").length > 0) {
-//     submitBtn.disabled = true;
-//     return;
-//   }
-//   //check();
-//   console.log(email);
-
-
-//   // if all input fields are valid, submit the form
-//   form.submit();
-// });
-// }
